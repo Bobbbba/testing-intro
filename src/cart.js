@@ -37,14 +37,24 @@ function changeQuantity(cart, productId, quantity) {
     item.id === productId ? { ...item, quantity } : item,
   );
 }
-function removeFromCart() {
-  return notImplemented();
+function removeFromCart(cart, productId) {
+  return cart.filter((item) => item.id !== productId);
 }
-function calculateCartSubtotal() {
-  return notImplemented();
+function calculateCartSubtotal(cart) {
+  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
-function calculateOrderTotal() {
-  return notImplemented();
+function calculateOrderTotal(cart, promoCode) {
+  const subtotal = calculateCartSubtotal(cart);
+
+  let discount = 0;
+  if ((promoCode) === "SAVE10" && subtotal >= 20000) {
+    discount = Math.round(subtotal * 0.1);
+  }
+  console.log(discount)
+  const delivery = subtotal < 50000 ? 30000 : 0;
+  const total = subtotal - discount + delivery;
+
+  return {subtotal, discount, delivery, total}
 }
 
 const cartApi = {
