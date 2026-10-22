@@ -3,15 +3,9 @@ const { filterByCategory } = require("../../src/catalog");
 
 describe("filterByCategory", () => {
   test("'all' возвращает товары с ID [1, 2, 3, 4, 5, 6]", () => {
-    const catalog = [
-      { id: 1, stock: 1 },
-      { id: 2, stock: 0 },
-    ];
-    const result = filterByCategory(catalog, "all");
-    expect(result).toEqual([
-      { id: 1, stock: 1 },
-      { id: 2, stock: 0 },
-    ]);
+    const result = filterByCategory(products, "all");
+    const productIds = result.map((product) => product.id);
+    expect(productIds).toEqual([1, 2, 3, 4, 5, 6]);
   });
 
   test("undefined возвращает товары с ID [1, 2, 3, 4, 5, 6]", () => {

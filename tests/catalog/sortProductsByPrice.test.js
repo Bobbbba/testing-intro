@@ -73,9 +73,9 @@ describe('sortProductsByPrice', () => {
   test('направление по умолчанию не меняет исходный массив всех товаров', () => {
     const subset  = products.filter((p) => products.includes(p.id))
     
-    const result = sortProductsByPrice(subset , 'asc');
-    const prices = subset.map((p) => p.id);
+    const result = sortProductsByPrice(products);
+    const prices = products.map(p => p.id);
 
-    expect(prices).toEqual(subset);
+    expect(prices).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });
